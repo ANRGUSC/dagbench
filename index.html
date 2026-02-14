@@ -644,6 +644,7 @@ graph TD
     <h2>Installation &amp; Quick Start</h2>
     <div class="code-tabs">
       <div class="code-tab active" onclick="switchTab(event, 'tab-python')">Python API</div>
+      <div class="code-tab" onclick="switchTab(event, 'tab-generators')">Generators</div>
       <div class="code-tab" onclick="switchTab(event, 'tab-cli')">CLI</div>
     </div>
     <div id="tab-python" class="code-panel active">
@@ -662,6 +663,33 @@ network = <span class="func">fog_network</span>()
 <span class="comment"># Schedule with HEFT</span>
 scheduler = <span class="type">HeftScheduler</span>()
 schedule = scheduler.<span class="func">schedule</span>(network, task_graph)
+<span class="func">print</span>(f<span class="string">"Makespan: {schedule.makespan:.2f}"</span>)</div>
+    </div>
+    <div id="tab-generators" class="code-panel">
+      <div class="code-block"><span class="comment"># Generate classic benchmark DAGs programmatically</span>
+<span class="keyword">from</span> dagbench.generators <span class="keyword">import</span> gaussian_elimination_dag, fft_dag, cholesky_dag
+<span class="keyword">from</span> dagbench.generators <span class="keyword">import</span> mapreduce_dag, lu_decomposition_dag
+<span class="keyword">from</span> dagbench.generators <span class="keyword">import</span> random_layered_dag
+<span class="keyword">from</span> dagbench.networks <span class="keyword">import</span> fog_network
+<span class="keyword">from</span> saga.schedulers <span class="keyword">import</span> HeftScheduler
+
+<span class="comment"># Generate a 7x7 Gaussian elimination DAG (28 tasks)</span>
+task_graph = <span class="func">gaussian_elimination_dag</span>(n=<span class="number">7</span>)
+
+<span class="comment"># Other classic generators</span>
+fft      = <span class="func">fft_dag</span>(num_points=<span class="number">16</span>)        <span class="comment"># 64 tasks</span>
+cholesky = <span class="func">cholesky_dag</span>(tiles=<span class="number">5</span>)         <span class="comment"># 35 tasks</span>
+lu       = <span class="func">lu_decomposition_dag</span>(tiles=<span class="number">4</span>)   <span class="comment"># 30 tasks</span>
+mr       = <span class="func">mapreduce_dag</span>(mappers=<span class="number">8</span>, reducers=<span class="number">4</span>)
+
+<span class="comment"># Random layered DAG with custom structure</span>
+rand_dag = <span class="func">random_layered_dag</span>(
+    min_depth=<span class="number">6</span>, max_depth=<span class="number">10</span>,
+    min_width=<span class="number">3</span>, max_width=<span class="number">8</span>,
+)
+
+<span class="comment"># Schedule any generated DAG</span>
+schedule = <span class="type">HeftScheduler</span>().<span class="func">schedule</span>(<span class="func">fog_network</span>(), task_graph)
 <span class="func">print</span>(f<span class="string">"Makespan: {schedule.makespan:.2f}"</span>)</div>
     </div>
     <div id="tab-cli" class="code-panel">
