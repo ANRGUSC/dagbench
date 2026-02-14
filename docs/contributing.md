@@ -120,10 +120,76 @@ stats = compute_graph_stats(task_graph)
 # Returns: num_tasks, num_edges, depth, width, ccr, parallelism
 ```
 
+## Finding Papers with Extractable DAGs
+
+The hardest part of adding real-world workflows is finding papers that contain formal, extractable task graphs. Most scheduling papers use abstract DAGs (task_1, task_2...), and most systems papers describe pipelines only in prose. Here's what works.
+
+### What Makes a Paper Extractable
+
+A paper must have ALL of:
+1. **Named application-level tasks** (e.g., "ObjectDetection", "FeatureExtract" -- not "task i")
+2. **Explicit dependency structure** as a DAG figure or formal definition
+3. **Edge/IoT/MEC deployment context**
+
+Bonus (makes the workflow much more valuable):
+- Per-task computation costs profiled on real hardware (Jetson, RPi, etc.)
+- Data transfer sizes between tasks
+- Multi-device profiling (enables heterogeneous network construction)
+
+### Search Queries That Work
+
+**Best queries** (these actually produced results):
+- `"inference pipeline" edge computing scheduling DAG`
+- `"video analytics" pipeline edge "task graph"`
+- `"pipeline parallel" edge computing application`
+- `"real application" DAG scheduling edge heterogeneous`
+- `site:mdpi.com "pipeline" "edge computing" "task graph"` (open-access papers)
+
+**Best venues** (ranked by hit rate):
+- IEEE MILCOM, ACM HPDC, IEEE TPDS, ACM SEC
+- MDPI Sensors/Computers/Electronics (open access, easy to verify)
+- Elsevier JNCA (networking applications)
+- arXiv cs.DC + cs.NI
+
+**Best domains** for finding real pipelines:
+- Video analytics (object detection -> classification -> tracking)
+- Precision agriculture (sensing -> detection -> analysis)
+- Face analysis (pipeline-parallel decomposition)
+- Multi-model ML inference (natural DAG branching)
+
+### Green Flags
+
+- Figure captions: "Application model", "Task dependency graph", "Inference pipeline"
+- Tables with "Model / Device / Latency (ms)" -- real per-task costs
+- Papers evaluating on "N real applications" (N > 1 means multiple extractable DAGs)
+- Pipeline-parallel decomposition papers
+- Resilience/fault-tolerance papers (must describe pipeline structure explicitly)
+
+### Red Flags
+
+- "We model the application as a DAG" but only random graphs in evaluation
+- DNN layer graphs (neural network architecture != application pipeline)
+- Survey papers (describe patterns, no formal extractable DAGs)
+- iFogSim built-in applications (2-4 tasks, too simple)
+
+### Extraction Workflow
+
+1. **Download and read the PDF locally** (WebFetch can't parse most academic PDFs)
+2. **Verify the figure**: Are tasks named? Are dependencies explicit? Is there branching?
+3. **Extract tasks and edges** from the figure, costs from tables
+4. **Build the network**: Use device speedup ratios from the paper if available
+5. **Create workflow files**: graph.json (via DAGBuilder), metadata.yaml with honest provenance
+6. **Validate**: `dagbench validate`, HEFT scheduling, check stats match metadata
+7. **Document honestly**: Note what's directly from the paper vs. estimated in the `notes` field
+
+See `docs/sources.md` for the full list of successfully extracted papers and their provenance details.
+
 ## Provenance Guidelines
 
 - Always cite the original paper/source
 - Specify which figure/table the DAG was extracted from
-- If costs are estimated (not from the paper), note this in `quality_issues`
+- If costs are estimated (not from the paper), note this in the `notes` field
 - Use `extraction_method: manual-figure` for hand-coded DAGs from papers
 - Use `extraction_method: programmatic` for generated/imported DAGs
+- The `notes` field is critical: explain what's from the paper vs. what's estimated
+- Avoid Unicode characters (arrows, em dashes) in description fields -- Windows cp1252 encoding breaks CLI output
