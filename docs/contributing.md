@@ -178,7 +178,7 @@ Bonus (makes the workflow much more valuable):
 2. **Verify the figure**: Are tasks named? Are dependencies explicit? Is there branching?
 3. **Extract tasks and edges** from the figure, costs from tables
 4. **Build the network**: Use device speedup ratios from the paper if available
-5. **Create workflow files**: graph.json (via DAGBuilder), metadata.yaml with honest provenance
+5. **Create workflow files**: graph.json (via DAGBuilder), metadata.yaml with provenance
 6. **Validate**: `dagbench validate`, HEFT scheduling, check stats match metadata
 7. **Document honestly**: Note what's directly from the paper vs. estimated in the `notes` field
 
