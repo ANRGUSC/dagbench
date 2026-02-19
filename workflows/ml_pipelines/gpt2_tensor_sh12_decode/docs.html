@@ -1013,7 +1013,7 @@ graph TD
 <strong>Extraction Method:</strong> Converted from execution trace<br>
 <strong>Extractor:</strong> codex-gpt5<br>
 <strong>Date:</strong> 2026-02-18<br>
-<strong>Notes:</strong> Derived from local analysis of Hugging Face GPT-2 code using dagprofiler. DAG implementation repository: https://github.com/ANRGUSC/gpt2-dag. Profiler repository: https://github.com/ANRGUSC/dagprofiler. phase=decode, prompt_len=128, decode_context_len=128, shard_count=12. Prefill and decode are complementary workflows for one request. Run prefill once for the prompt, then run decode for each generation step (up to L_g steps, early stop on EOS). Total latency model used with this pair is: prefill_once + L_g * decode_step. Decode costs here are profiled at avg_kv = L_p + L_g/2 with L_p=128, L_g=128.
+<strong>Notes:</strong> Derived from local analysis of Hugging Face GPT-2 code using dagprofiler. DAG implementation repository: <a href="https://github.com/ANRGUSC/gpt2-dag" target="_blank">https://github.com/ANRGUSC/gpt2-dag</a>. Profiler repository: <a href="https://github.com/ANRGUSC/dagprofiler" target="_blank">https://github.com/ANRGUSC/dagprofiler</a>. phase=decode, prompt_len=128, decode_context_len=128, shard_count=12. Prefill and decode are complementary workflows for one request. Run prefill once for the prompt, then run decode for each generation step (up to L_g steps, early stop on EOS). Total latency model used with this pair is: prefill_once + L_g * decode_step. Decode costs here are profiled at avg_kv = L_p + L_g/2 with L_p=128, L_g=128.
     </div>
 
     <div class="section">
