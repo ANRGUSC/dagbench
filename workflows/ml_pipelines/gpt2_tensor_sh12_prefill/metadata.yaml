@@ -9,19 +9,31 @@ domains:
 - edge-computing
 provenance:
   source: GPT-2 Hugging Face implementation profiled via dagprofiler
-  paper_title: GPT-2 Tensor DAG Sharding (measured trace conversion)
+  paper_title: 'Language Models are Unsupervised Multitask Learners'
+  authors:
+  - Alec Radford
+  - Jeffrey Wu
+  - Rewon Child
+  - David Luan
+  - Dario Amodei
+  - Ilya Sutskever
+  year: 2019
   repo_url: https://github.com/huggingface/transformers
   extraction_method: trace-conversion
   extractor: codex-gpt5
   extraction_date: '2026-02-18'
-  notes: 'Derived from local analysis of Hugging Face GPT-2 code using dagprofiler.
+  notes: 'Based on the Hugging Face transformers implementation of GPT-2, not the
+    original OpenAI code. Profiled via dagprofiler to produce measured execution traces.
     DAG implementation repository: https://github.com/ANRGUSC/gpt2-dag. Profiler repository:
     https://github.com/ANRGUSC/dagprofiler. phase=prefill, prompt_len=128, decode_context_len=128,
     shard_count=12. Prefill and decode are complementary workflows for one request.
     Use prefill exactly once per prompt to initialize KV cache. Then run decode repeatedly
     for token generation steps. Total latency model used with this pair is: prefill_once
     + L_g * decode_step. For decode profiling, avg_kv is set to L_p + L_g/2 (here
-    L_p=128, L_g=128).'
+    L_p=128, L_g=128). NOTE: The CCR (265961) is extremely high, meaning these workflows
+    are heavily communication-dominated. Tensor sizes in bytes dwarf sub-millisecond
+    compute times. Scheduling algorithms that assume CCR near 1.0 may behave
+    differently on these workflows.'
 license:
   source_license: Apache-2.0
   dagbench_license: Apache-2.0

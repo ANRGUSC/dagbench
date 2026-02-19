@@ -999,6 +999,7 @@ graph TD
                 <tr><td>Tasks</td><td>327</td></tr><tr><td>Edges</td><td>614</td></tr><tr><td>Depth</td><td>63</td></tr><tr><td>Width</td><td>12</td></tr><tr><td>CCR</td><td>265961.2384</td></tr><tr><td>Parallelism</td><td>5.1905</td></tr>
             </tbody>
         </table>
+        <p style="margin-top:12px; font-size:0.95em; color:#555;"><strong>Note:</strong> The CCR (Communication-to-Computation Ratio) of ~266,000 is extremely high, indicating a heavily communication-dominated workflow. Tensor data sizes (bytes) vastly exceed sub-millisecond compute times. Scheduling algorithms that assume CCR near 1.0 may exhibit degenerate behavior on this workflow.</p>
     </div>
 
     <div class="section">
@@ -1006,7 +1007,8 @@ graph TD
         <span class="badge badge-method">Converted from execution trace</span>
         <br><br>
         <strong>Source:</strong> GPT-2 Hugging Face implementation profiled via dagprofiler<br>
-<strong>Paper:</strong> GPT-2 Tensor DAG Sharding (measured trace conversion)<br>
+<strong>Paper:</strong> Language Models are Unsupervised Multitask Learners (Radford et al., 2019)<br>
+<strong>Note:</strong> Based on the Hugging Face transformers implementation, not the original OpenAI code.<br>
 <strong>Repository:</strong> <a href="https://github.com/huggingface/transformers" target="_blank">https://github.com/huggingface/transformers</a><br>
 <strong>Extraction Method:</strong> Converted from execution trace<br>
 <strong>Extractor:</strong> codex-gpt5<br>

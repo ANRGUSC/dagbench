@@ -1,5 +1,5 @@
 version: 0.1.0
-total_workflows: 109
+total_workflows: 84
 workflows:
 - id: agri.crop_disease
   name: Crop Disease Detection
@@ -137,14 +137,6 @@ workflows:
   num_tasks: 15
   num_edges: 24
   completeness: full
-- id: edge.ar_pipeline
-  name: AR Object Detection Pipeline
-  domains:
-  - edge-computing
-  - image-processing
-  num_tasks: 8
-  num_edges: 8
-  completeness: full
 - id: edge.autonomous_driving
   name: Autonomous Driving Pipeline
   domains:
@@ -162,14 +154,6 @@ workflows:
   num_tasks: 6
   num_edges: 7
   completeness: structure-and-costs
-- id: edge.face_recognition
-  name: Face Recognition Pipeline
-  domains:
-  - edge-computing
-  - image-processing
-  num_tasks: 7
-  num_edges: 7
-  completeness: full
 - id: edge.loki_traffic_pipeline
   name: Loki Traffic Analysis Pipeline
   domains:
@@ -239,14 +223,6 @@ workflows:
   num_tasks: 14
   num_edges: 16
   completeness: full
-- id: fog.content_distribution
-  name: Fog Content Distribution
-  domains:
-  - fog-computing
-  - edge-computing
-  num_tasks: 10
-  num_edges: 14
-  completeness: full
 - id: fog.federated_fog
   name: Federated Fog Learning
   domains:
@@ -263,14 +239,6 @@ workflows:
   num_tasks: 17
   num_edges: 16
   completeness: full
-- id: fog.latency_critical
-  name: Fog Latency-Critical Processing
-  domains:
-  - fog-computing
-  - edge-computing
-  num_tasks: 8
-  num_edges: 7
-  completeness: full
 - id: fog.smart_building
   name: Fog Smart Building Management
   domains:
@@ -279,14 +247,6 @@ workflows:
   - iot
   num_tasks: 21
   num_edges: 22
-  completeness: full
-- id: fog.three_tier_offload
-  name: Fog Three-Tier Offloading
-  domains:
-  - fog-computing
-  - edge-computing
-  num_tasks: 12
-  num_edges: 11
   completeness: full
 - id: iiot.cnc_monitoring
   name: IIoT CNC Machine Monitoring
@@ -311,14 +271,6 @@ workflows:
   - iot
   num_tasks: 13
   num_edges: 14
-  completeness: full
-- id: iiot.process_control
-  name: IIoT Chemical Process Control
-  domains:
-  - industrial-iot
-  - cyber-physical
-  num_tasks: 12
-  num_edges: 13
   completeness: full
 - id: iiot.robotic_assembly
   name: IIoT Robotic Assembly Coordination
@@ -368,24 +320,6 @@ workflows:
   - data-analytics
   num_tasks: 10
   num_edges: 11
-  completeness: full
-- id: iot.smart_grid
-  name: Smart Grid Energy Management
-  domains:
-  - iot
-  - cyber-physical
-  - edge-computing
-  num_tasks: 10
-  num_edges: 11
-  completeness: full
-- id: mec.face_detection_offload
-  name: MEC Face Detection Offloading
-  domains:
-  - mec
-  - edge-computing
-  - image-processing
-  num_tasks: 9
-  num_edges: 9
   completeness: full
 - id: mec.sleipnir_antivirus
   name: SLEIPNIR Antivirus App
@@ -437,20 +371,6 @@ workflows:
   num_tasks: 13
   num_edges: 14
   completeness: full
-- id: ml.cnn_inference
-  name: CNN Inference Pipeline
-  domains:
-  - ml-pipeline
-  num_tasks: 13
-  num_edges: 12
-  completeness: full
-- id: ml.etl_warehouse
-  name: ETL Data Warehouse Pipeline
-  domains:
-  - data-analytics
-  num_tasks: 12
-  num_edges: 12
-  completeness: full
 - id: ml.federated_learning
   name: Federated Learning Round (5 clients)
   domains:
@@ -474,22 +394,6 @@ workflows:
   num_tasks: 327
   num_edges: 614
   completeness: full
-- id: ml.nlp_pipeline
-  name: NLP Text Analysis Pipeline
-  domains:
-  - ml-pipeline
-  - data-analytics
-  num_tasks: 9
-  num_edges: 11
-  completeness: full
-- id: nfv.cdn_edge_cache
-  name: NFV CDN Edge Caching
-  domains:
-  - nfv
-  - edge-computing
-  num_tasks: 10
-  num_edges: 10
-  completeness: full
 - id: nfv.ue_attach
   name: 5G UE Attach Procedure
   domains:
@@ -506,14 +410,6 @@ workflows:
   - genomics
   num_tasks: 19
   num_edges: 22
-  completeness: full
-- id: scientific.bwa_like
-  name: BWA-like Alignment Workflow
-  domains:
-  - scientific
-  - genomics
-  num_tasks: 13
-  num_edges: 15
   completeness: full
 - id: scientific.epigenomics_like
   name: Epigenomics-like Genome Workflow
@@ -540,14 +436,6 @@ workflows:
   num_tasks: 24
   num_edges: 31
   completeness: full
-- id: scientific.soykb_like
-  name: SoyKB-like Genome Pipeline
-  domains:
-  - scientific
-  - genomics
-  num_tasks: 19
-  num_edges: 20
-  completeness: full
 - id: smart_city.air_quality
   name: Air Quality Monitoring
   domains:
@@ -555,14 +443,6 @@ workflows:
   - iot
   num_tasks: 15
   num_edges: 15
-  completeness: full
-- id: smart_city.emergency_response
-  name: Emergency Response Coordination
-  domains:
-  - smart-city
-  - edge-computing
-  num_tasks: 12
-  num_edges: 16
   completeness: full
 - id: smart_city.traffic_mgmt
   name: Smart City Traffic Management
@@ -750,72 +630,6 @@ workflows:
   num_tasks: 22
   num_edges: 40
   completeness: full
-- id: tactical.isr_pipeline
-  name: Tactical ISR Processing
-  domains:
-  - tactical
-  - manet
-  num_tasks: 13
-  num_edges: 13
-  completeness: full
-- id: tactical.mesh_routing
-  name: MANET Mesh Routing Protocol
-  domains:
-  - manet
-  - wireless
-  num_tasks: 10
-  num_edges: 12
-  completeness: full
-- id: tactical.situational_awareness
-  name: Tactical COP Situational Awareness
-  domains:
-  - tactical
-  - manet
-  num_tasks: 15
-  num_edges: 16
-  completeness: full
-- id: telecom.network_slicing
-  name: 5G Network Slicing Orchestration
-  domains:
-  - telecom
-  - 5g
-  - edge-computing
-  num_tasks: 10
-  num_edges: 12
-  completeness: full
-- id: telecom.oran_uplink
-  name: O-RAN Uplink Processing Pipeline
-  domains:
-  - telecom
-  - 5g
-  num_tasks: 11
-  num_edges: 10
-  completeness: full
-- id: telecom.sfc_5g
-  name: 5G Service Function Chain
-  domains:
-  - telecom
-  - 5g
-  - edge-computing
-  num_tasks: 8
-  num_edges: 8
-  completeness: full
-- id: uav.delivery_fleet
-  name: UAV Fleet Delivery Orchestration
-  domains:
-  - uav
-  - edge-computing
-  num_tasks: 24
-  num_edges: 27
-  completeness: full
-- id: uav.precision_agriculture
-  name: UAV Precision Agriculture Survey
-  domains:
-  - uav
-  - agriculture-iot
-  num_tasks: 13
-  num_edges: 16
-  completeness: full
 - id: uav.search_rescue
   name: UAV Search and Rescue Coordination
   domains:
@@ -823,14 +637,6 @@ workflows:
   - edge-computing
   num_tasks: 20
   num_edges: 21
-  completeness: full
-- id: v2x.collision_avoidance
-  name: V2X Collision Avoidance System
-  domains:
-  - v2x
-  - cyber-physical
-  num_tasks: 10
-  num_edges: 9
   completeness: full
 - id: v2x.cooperative_perception
   name: V2X Cooperative Perception
@@ -847,12 +653,4 @@ workflows:
   - smart-city
   num_tasks: 15
   num_edges: 18
-  completeness: full
-- id: v2x.platooning_control
-  name: V2X Truck Platooning Control
-  domains:
-  - v2x
-  - cyber-physical
-  num_tasks: 13
-  num_edges: 14
   completeness: full
